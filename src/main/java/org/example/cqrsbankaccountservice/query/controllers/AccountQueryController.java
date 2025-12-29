@@ -1,33 +1,36 @@
 package org.example.cqrsbankaccountservice.query.controllers;
 
 
-import org.axonframework.messaging.responsetypes.ResponseTypes;
-import org.axonframework.queryhandling.QueryGateway;
 import org.example.cqrsbankaccountservice.query.entities.Account;
-import org.example.cqrsbankaccountservice.query.queries.GetAllAccountsQuery;
+import org.example.cqrsbankaccountservice.query.repositories.AccountRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/query/accounts")
 public class AccountQueryController {
-    private final QueryGateway queryGateway; // Bus de Query [20]
+    private final AccountRepository accountRepository;
 
-    public AccountQueryController(QueryGateway queryGateway) {
-        this.queryGateway = queryGateway;
+    public AccountQueryController(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
     @GetMapping("/all")
-    public CompletableFuture<List<Account>> accountList() {
-        // Dispatch de la query vers le bus [21]
-        return queryGateway.query(
-                new GetAllAccountsQuery(),
-                ResponseTypes.multipleInstancesOf(Account.class)
-        );
+    public ResponseEntity<List<Account>> accountList() {
+        List<Account> accounts = accountRepository.findAll();
+        return ResponseEntity.ok(accounts);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Account> getAccountById(@PathVariable String id) {
+        Optional<Account> account = accountRepository.findById(id);
+        return account.map(ResponseEntity::ok)
+                      .orElse(ResponseEntity.notFound().build());
+    }
 }

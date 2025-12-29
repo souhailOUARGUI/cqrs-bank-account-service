@@ -1,8 +1,10 @@
 package org.example.cqrsbankaccountservice.commands.commands;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+@NoArgsConstructor
 public abstract class BaseCommand<T> {
     @TargetAggregateIdentifier
     @Getter

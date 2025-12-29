@@ -1,7 +1,9 @@
 package org.example.cqrsbankaccountservice.commands.commands;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class CreateAccountCommand extends BaseCommand<String> {
     @Getter private double initialBalance;
     @Getter private String currency;
