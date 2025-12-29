@@ -2,7 +2,7 @@
 
 A Spring Boot application implementing **CQRS (Command Query Responsibility Segregation)** and **Event Sourcing** patterns using **Axon Framework**.
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -28,7 +28,7 @@ A Spring Boot application implementing **CQRS (Command Query Responsibility Segr
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Java 17**
 - **Spring Boot 4.0.1**
@@ -38,7 +38,7 @@ A Spring Boot application implementing **CQRS (Command Query Responsibility Segr
 - **Lombok**
 - **Swagger/OpenAPI**
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/main/java/org/example/cqrsbankaccountservice/
@@ -72,7 +72,7 @@ src/main/java/org/example/cqrsbankaccountservice/
         └── AccountRepository.java      # JPA Repository
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -105,7 +105,7 @@ mvn spring-boot:run
 | **Axon Server Dashboard** | http://localhost:8024 |
 | **H2 Console** | http://localhost:8066/h2-console |
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### Command Side
 
@@ -142,7 +142,7 @@ mvn spring-boot:run
 ]
 ```
 
-## 📚 CQRS & Event Sourcing Concepts
+## CQRS & Event Sourcing Concepts
 
 ### Command Flow
 1. REST Controller receives request
@@ -160,7 +160,7 @@ mvn spring-boot:run
 2. Updates the read model (PostgreSQL/H2)
 3. Query side reflects the current state
 
-## 🛑 Stopping the Application
+## Stopping the Application
 
 ```bash
 # Stop Spring Boot (Ctrl+C)
